@@ -7,11 +7,14 @@ lines ← file_content ⊸ { ⍵ }
 ⍝ Convert each line to a numeric vector
 lines ← ⍎¨ lines 
 
-⍝ Solution function (checks if function is monotonic)
-f ← {(∧/¯1↓⍵<1⌽⍵) ∨ (∧/¯1↓⍵>1⌽⍵)}
+⍝ Function to check if function is monotonic
+monotonic ← {(∧/¯1↓⍵<1⌽⍵) ∨ (∧/¯1↓⍵>1⌽⍵)}
+
+⍝ Function to check if the distance between values is 3
+distance <- {∧/3≥(¯1↓(1⌽⍵)-⍵)}
 
 ⍝ Apply the function to each line (and sums the output for each value)
-results ← {+/f¨⍵}¨ lines
+results ← {+/(distance¨ ⍵ ∧ monotonic ⍵¨)} lines
 
 ⍝ Display the final results
 results
