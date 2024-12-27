@@ -7,8 +7,8 @@ lines ← file_content ⊸ { ⍵ }
 ⍝ Convert each line to a numeric vector
 lines ← ⍎¨ lines 
 
-⍝ Function to check if function is monotonic
-monotonic ← {(∧/¯1↓⍵<1⌽⍵) ∨ (∧/¯1↓⍵>1⌽⍵)}
+⍝ Function to check if function is monotonic and allows for a single bad level
+monotonic ← {∧/(≢⍵-1≤(+/¯1↓⍵<1⌽⍵) ∨ ≢⍵-1≤(∧/¯1↓⍵>1⌽⍵))}
 
 ⍝ Function to check if the distance between values is 3
 distance <- {∧/3≥(¯1↓(1⌽⍵)-⍵)<0}
@@ -19,6 +19,4 @@ results ← {+/(distance¨ ⍵ ∧ monotonic ⍵¨)} lines
 ⍝ Display the final results
 results
 
-⍝ 510
-
-
+⍝ 553
