@@ -7,7 +7,7 @@ lines ← file_content ⊸ { ⍵ }
 ⍝ Convert each line to a numeric vector
 lines ← ⍎¨ lines 
 
-⍝ Function to check if function is monotonic
+⍝ Function to check if array is monotonic
 monotonic ← {(∧/¯1↓⍵<1⌽⍵) ∨ (∧/¯1↓⍵>1⌽⍵)}
 
 ⍝ Function to check if the distance between values is 3
